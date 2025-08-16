@@ -8,40 +8,35 @@
 
 <body>
     <p>
-        <?php
-// 独自のソート関数を定義
-function sort_2way($array, $order) {
-    // 昇順 or 降順を判定
-    if ($order === "ASC") {
-        sort($array); // 昇順
-    } elseif ($order === "DESC") {
-        rsort($array); // 降順
+    <?php
+// 独自ソート関数：TRUEなら昇順、TRUEでなければ降順
+function sort_2way(array $arr, bool $isAsc): void {
+    if ($isAsc === true) {
+        sort($arr); // 昇順
+        echo "昇順ソートします。<br>";
     } else {
-        echo "ソートの順序指定が不正です。ASC または DESC を指定してください。<br>";
-        return;
+        rsort($arr); // 降順
+        echo "降順ソートします。<br>";
     }
 
-    // 配列を出力（<br>で改行）
-    foreach ($array as $value) {
-        echo $value . "<br>";
+    // 1行ずつ表示（<br>で改行）
+    foreach ($arr as $v) {
+        echo $v . "<br>";
     }
 }
 
-// テスト用配列
-$numbers = array(10, 3, 5, 7, 15, 2, 8);
+// 課題指定の配列
+$numbers = [15, 4, 18, 23, 10];
 
-// 昇順ソート
-echo "昇順ソートします。<br>";
-sort_2way($numbers, "ASC");
-
+// 昇順（TRUE）
+sort_2way($numbers, true);
 echo "<br>";
 
-// 降順ソート
-echo "降順ソートします。<br>";
-sort_2way($numbers, "DESC");
+// 降順（FALSE）
+sort_2way($numbers, false);
+    
 ?>
-
-    </p>
+</p>
 </body>
 
 </html>
